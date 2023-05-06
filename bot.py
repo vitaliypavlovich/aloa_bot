@@ -1,5 +1,5 @@
 import os
-
+from message import send_message
 import logging
 
 
@@ -18,12 +18,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(
         f"Hello {update.effective_user.first_name}"
     )
+    # logger.info(
+    #     f'Sent message {update.message.reply_text}'
+    # )
 
 
 async def message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.info(
         f'Message "{update.message.text}" from user {update.effective_user.first_name}'
     )
+    # await update.message.reply_text(
+    #     f'Одну секунду, ищу подходящий ответ'
+    # )
+    await send_message(chat_id=update.effective_chat.id, text=input('Enter your message '))
+    # logger.info(
+    #     f'Sent message {update.message.reply_text}'
+    # )
     # await update.message.reply_text(
     #     f"Hello {update.effective_user.first_name}"
     # )
